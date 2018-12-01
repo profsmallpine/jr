@@ -1,0 +1,6 @@
+# IDE's and OS junk and such
+.DS_Store
+.env
+
+# Compiled go code
+jr
