@@ -16,8 +16,10 @@ func main() {
 	logger := log.New(os.Stdout, "", log.Lshortfile|log.LstdFlags)
 
 	// Minify assets.
-	if success := minifyAssets(); !success {
-		panic("could not minify assets!")
+	if os.Getenv("ENVIRONMENT") != "production" {
+		if success := minifyAssets(); !success {
+			panic("could not minify assets!")
+		}
 	}
 
 	// Load .env file.
