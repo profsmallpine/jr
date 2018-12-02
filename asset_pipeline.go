@@ -1,4 +1,4 @@
-package minify
+package main
 
 import (
 	"bufio"
@@ -16,8 +16,8 @@ import (
 	"github.com/tdewolff/minify/js"
 )
 
-// Execute compiles (minified + concatenated) assets into single hashed files
-func Execute() bool {
+// minifyAssets compiles (minified + concatenated) assets into single hashed files
+func minifyAssets() bool {
 	if success := minifyConcat(&stylesheets, "text/css", "assets/css/application.css"); !success {
 		return false
 	}

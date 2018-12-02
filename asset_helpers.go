@@ -1,4 +1,4 @@
-package minify
+package main
 
 import (
 	"fmt"
@@ -12,30 +12,30 @@ import (
 )
 
 const (
-	javascriptTag = `<script src="/%s"></script>`
-	stylesheetTag = `<link type="text/css" rel="stylesheet" href="/%s">`
+	javascriptTagHTML = `<script src="/%s"></script>`
+	stylesheetTagHTML = `<link type="text/css" rel="stylesheet" href="/%s">`
 )
 
 // AssetHelperFuncs is package var to pass to static HTML
-var AssetHelperFuncs = template.FuncMap{
-	"javascriptTag": JavascriptTag,
-	"stylesheetTag": StylesheetTag,
+var assetHelperFuncs = template.FuncMap{
+	"javascriptTag": javascriptTag,
+	"stylesheetTag": stylesheetTag,
 }
 
-// JavascriptTag returns html with script tags for all files from assets.go in
+// javascriptTag returns html with script tags for all files from assets.go in
 // development and a single bundle file outside of development.
-func JavascriptTag() template.HTML {
+func javascriptTag() template.HTML {
 	assetURL := "assets/js/application-*"
 	paths, mtimes := resolveAssetUrls(assetURL)
-	return generateRawHTML(paths, mtimes, javascriptTag)
+	return generateRawHTML(paths, mtimes, javascriptTagHTML)
 }
 
-// StylesheetTag returns html with style tags for all files from assets.go in
+// stylesheetTag returns html with style tags for all files from assets.go in
 // development and a single bundle file outside of development.
-func StylesheetTag() template.HTML {
+func stylesheetTag() template.HTML {
 	assetURL := "assets/css/application-*"
 	paths, mtimes := resolveAssetUrls(assetURL)
-	return generateRawHTML(paths, mtimes, stylesheetTag)
+	return generateRawHTML(paths, mtimes, stylesheetTagHTML)
 }
 
 func resolveAssetUrls(assetURL string) (urls []string, mtimes []time.Time) {

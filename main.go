@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/profsmallpine/jr/minify"
 )
 
 // TODO: add analytics
@@ -17,7 +16,7 @@ func main() {
 	logger := log.New(os.Stdout, "", log.Lshortfile|log.LstdFlags)
 
 	// Minify assets.
-	if success := minify.Execute(); !success {
+	if success := minifyAssets(); !success {
 		panic("could not minify assets!")
 	}
 

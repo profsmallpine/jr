@@ -8,8 +8,6 @@ import (
 	"os"
 	"strconv"
 	"time"
-
-	"github.com/profsmallpine/jr/minify"
 )
 
 // handler is http struct for passing services to the router.
@@ -69,8 +67,8 @@ func respond(logger *log.Logger, w http.ResponseWriter, r *http.Request, layout 
 }
 
 var templateFuncs = map[string]interface{}{
-	"javascriptTag": minify.JavascriptTag,
-	"stylesheetTag": minify.StylesheetTag,
+	"javascriptTag": javascriptTag,
+	"stylesheetTag": stylesheetTag,
 	"currentYear": func() int {
 		return time.Now().UTC().Year()
 	},

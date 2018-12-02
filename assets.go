@@ -1,4 +1,4 @@
-package minify
+package main
 
 var javascripts = []string{
 	"assets/js/jquery.js",
